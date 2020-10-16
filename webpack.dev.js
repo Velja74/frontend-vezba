@@ -1,24 +1,34 @@
+const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
-  
+  mode: 'development',    
+
+  devServer: {
+    contentBase: './dist',
+    stats: {
+      logging: 'warn'  // Value 'warn' tells stats to log errors and warnings only.
+    },
+    hot: true,
+  },    
+
+  optimization: {
+    minimize: false,
+  },
+
   module: {
     rules: [
       {
         test: /\.s[ac]ss$/i,
         use: [
-          // Creates `style` nodes from JS strings
           'style-loader',
-          // Translates CSS into CommonJS
           'css-loader',
-          // Compiles Sass to CSS
           'sass-loader',
         ],
-      },
-
+      },      
       {
-        test: /\.(png|jpe?g|gif)$/i,          
+        test: /\.(gif|jpe?g|png|svg)$/i,          
         use: [
           {
             loader: 'file-loader',
@@ -29,16 +39,14 @@ module.exports = {
           },
         ],
       },
-      
-    ],
+    ]
   },
 
   plugins: [
-    new CleanWebpackPlugin(),
-    new HtmlWebpackPlugin({
-      template: 'src/index.html',
-      scriptLoading: 'defer'
-    })
-  ],
-  mode: "development"
+      new CleanWebpackPlugin(),
+      new HtmlWebpackPlugin({
+          template: 'src/index.html',
+          scriptLoading: 'defer',            
+      })
+  ]  
 }
