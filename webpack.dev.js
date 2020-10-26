@@ -6,10 +6,8 @@ module.exports = {
   mode: 'development',    
 
   devServer: {
-    contentBase: './dist',
-    stats: {
-      logging: 'warn'  // Value 'warn' tells stats to log errors and warnings only.
-    },
+    contentBase: path.join(__dirname, 'dist'),
+    clientLogLevel: 'warn',
     hot: true,
   },    
 
@@ -19,6 +17,16 @@ module.exports = {
 
   module: {
     rules: [
+      {
+        test: /\.m?js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
+      },
       {
         test: /\.s[ac]ss$/i,
         use: [
