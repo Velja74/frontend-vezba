@@ -6,35 +6,27 @@ module.exports = {
   mode: 'development',    
 
   devServer: {
+    port: 8000,
     contentBase: path.join(__dirname, 'dist'),
-    clientLogLevel: 'warn',
+    clientLogLevel: 'warn', // Value 'warn' tells stats to log errors and warnings only.
     hot: true,
+    historyApiFallback: true,   
   },    
 
   optimization: {
     minimize: false,
   },
 
-  module: {
+  module: {    
     rules: [
       {
         test: /\.m?js$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader",
-          options: {
-            presets: ['@babel/preset-env']
-          }
+          loader: "babel-loader"
         }
       },
-      {
-        test: /\.s[ac]ss$/i,
-        use: [
-          'style-loader',
-          'css-loader',
-          'sass-loader',
-        ],
-      },      
+      
       {
         test: /\.(gif|jpe?g|png|svg)$/i,          
         use: [
@@ -47,6 +39,15 @@ module.exports = {
           },
         ],
       },
+      
+      {
+        test: /\.s[ac]ss$/i,
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader',
+        ],
+      }
     ]
   },
 

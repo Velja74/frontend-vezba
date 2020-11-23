@@ -1,11 +1,20 @@
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
 import "./styles/main.scss";
+require.context("./images");
 
-import "./images/image.png";
-import "./images/logo.png";
+let destination = document.getElementById("root");
+
+
+ReactDOM.render(  
+  <App/>,   
+  destination
+);
 
 
 if (module.hot) {
-    module.hot.accept(
-      console.log("Module pdate accepted!") // Intentionally leaved as confirmation that hot module replacement works.
-    );
-  };
+  module.hot.accept(
+    console.log("Module update accepted!") // Intentionally leaved as confirmation that hot module replacement works.
+  );
+};

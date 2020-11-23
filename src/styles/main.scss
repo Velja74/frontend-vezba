@@ -1,4 +1,4 @@
-$primaryColor: white;
+$primaryColor: rgb(255, 255, 255);
 
 * {
     box-sizing: border-box;
@@ -101,4 +101,8 @@ $primaryColor: white;
         width: 30%;
         padding: 2% 3%;
       }
+    }
+
+    a{
+      color:white;
     }
